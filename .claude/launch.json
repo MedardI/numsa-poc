@@ -1,6 +1,6 @@
 {
   "version": "0.0.1",
   "configurations": [
-    { "name": "numsa-site", "runtimeExecutable": "/Users/medardilunga/.nvm/versions/node/v24.4.1/bin/node", "runtimeArgs": ["--env-file-if-exists=.env", "server.js"], "port": 3000 }
+    { "name": "num-site", "runtimeExecutable": "/Users/medardilunga/.nvm/versions/node/v24.4.1/bin/node", "runtimeArgs": ["--env-file-if-exists=.env", "server.js"], "port": 3000 }
   ]
 }

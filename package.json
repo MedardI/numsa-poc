@@ -1,8 +1,8 @@
 {
-  "name": "numsa-site",
+  "name": "num-site",
   "version": "1.0.0",
   "private": true,
-  "description": "NUMSA home page replica with a document upload and approval backend",
+  "description": "NUM (National Union of Mineworkers) home page with a document upload and approval backend",
   "main": "server.js",
   "type": "commonjs",
   "engines": {

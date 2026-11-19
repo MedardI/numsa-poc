@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Home - NUMSA</title>
-  <meta name="description" content="NUMSA - the National Union of Metalworkers of South Africa. Creating an equal society for future generations.">
-  <meta name="theme-color" content="#E92E33">
-  <link rel="icon" href="/assets/numsa-favicon.png">
+  <title>NUM | National Union of Mineworkers</title>
+  <meta name="description" content="The National Union of Mineworkers (NUM) - protecting members from health and safety hazards and fighting for workers' rights.">
+  <meta name="theme-color" content="#ED1D24">
+  <link rel="icon" href="/assets/num/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,17 +14,17 @@
   <link rel="stylesheet" href="/css/site.css">
 </head>
 <body>
-<a class="skip-link" href="#content">Skip to content</a>
+<a class="skip-link" href="#content">Skip to main content</a>
 
 <!-- ============ TOP BAR ============ -->
 <div class="topbar">
   <div class="container topbar__inner">
+    <span class="topbar__tag">An affiliate of COSATU</span>
     <ul class="topbar__contacts">
-      <li><a href="tel:+27116891700"><i class="fa-solid fa-phone"></i> +27 11 689 1700</a></li>
-      <li><a href="mailto:info@numsa.org.za"><i class="fa-regular fa-envelope"></i> info@numsa.org.za</a></li>
-      <li><a href="#documents" data-doc-category="Press Statements"><span class="live-dot"></span> MIRF Statement</a></li>
+      <li><a href="mailto:info@num.org.za"><i class="fa-regular fa-envelope"></i> info@num.org.za</a></li>
+      <li><a href="tel:+27113772000"><i class="fa-solid fa-phone"></i> 011 377 2000</a></li>
+      <li><a class="topbar__cta" href="#contact"><i class="fa-solid fa-location-arrow"></i> Contact</a></li>
     </ul>
-    <a class="topbar__link" href="#benefits">Access Your Benefits <i class="fa-solid fa-arrow-right"></i></a>
   </div>
 </div>
 
@@ -32,34 +32,25 @@
 <header class="header" id="header">
   <div class="container">
     <div class="header__bar">
-      <a class="brand" href="/" aria-label="NUMSA home">
-        <img src="/assets/numsa-logo.svg" alt="NUMSA" width="142" height="54">
+      <a class="brand" href="/" aria-label="National Union of Mineworkers home">
+        <img src="/assets/num/num-logo-256.png" alt="" width="52" height="52">
+        <span class="brand__text"><strong>NUM</strong><small>National Union of Mineworkers</small></span>
       </a>
       <nav id="main-nav" class="nav" aria-label="Main">
         <ul>
-          <li><a class="is-active" href="/">Home</a></li>
-          <li class="has-sub">
-            <a href="#about">About Us <i class="fa-solid fa-chevron-down"></i></a>
-            <ul class="sub">
-              <li><a href="#documents" data-doc-category="Constitution &amp; Governance">Constitution</a></li>
-              <li><a href="#about">Leadership</a></li>
-              <li><a href="#documents" data-doc-category="Policies">Service Charter</a></li>
-            </ul>
-          </li>
-          <li><a href="#benefits">Member Benefits</a></li>
-          <li><a href="#sectors">Our Sectors</a></li>
-          <li><a href="#documents" data-doc-category="">News and Media</a></li>
-          <li><a href="#documents" data-doc-category="Vacancies">Vacancies</a></li>
-          <li><a href="#documents" data-doc-category="Procurement &amp; Tenders">Procurement</a></li>
-          <li><a href="#">Our Shop</a></li>
-          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#about">About us</a></li>
+          <li><a href="#join">Join the NUM</a></li>
+          <li><a href="#documents" data-doc-category="Careers">Careers</a></li>
+          <li><a href="#about">Leadership</a></li>
+          <li><a href="#documents" data-doc-category="">Documents</a></li>
+          <li><a href="#documents" data-doc-category="Media Statements">Media Statements</a></li>
+          <li><a href="#videos">Videos</a></li>
         </ul>
       </nav>
       <div class="header__actions">
-        <a class="btn btn--red btn--sm" href="#join">Join Now</a>
-        <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Menu">
-          <span></span><span></span>
-        </button>
+        <button class="icon-btn" id="search-btn" aria-label="Search documents"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <a class="btn btn--red btn--sm" href="#join">Join the NUM</a>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Menu"><span></span><span></span></button>
       </div>
     </div>
   </div>
@@ -68,106 +59,103 @@
 <main id="content">
 
   <!-- ============ HERO ============ -->
-  <section class="hero" id="join">
-    <div class="hero__slides" aria-hidden="true">
-      <div class="hero__slide is-active" style="background-image:url('/assets/Home-banner.webp')"></div>
-      <div class="hero__slide" style="background-image:url('/assets/NUMSA-2-scaled.jpg')"></div>
-      <div class="hero__slide" style="background-image:url('/assets/NUMSA-3.jpg')"></div>
-      <div class="hero__slide" style="background-image:url('/assets/NUMSA-1.jpg')"></div>
-    </div>
-    <div class="hero__overlay"></div>
+  <section class="hero">
+    <div class="hero__bg" style="background-image:url('/assets/num/banner.jpg')" aria-hidden="true"></div>
+    <div class="hero__overlay" aria-hidden="true"></div>
     <div class="container hero__content">
-      <p class="eyebrow eyebrow--light"><span></span>National Union of Metalworkers of South Africa</p>
-      <h1>Creating an <em>equal society</em> for future generations</h1>
-      <p class="hero__lead">The largest single trade union in Africa, fighting for job security, fair wages and dignity for every worker.</p>
+      <p class="eyebrow eyebrow--light">National Union of Mineworkers</p>
+      <h1>Welcome to the <em>National Union</em> of Mineworkers</h1>
+      <p class="hero__lead">NUM’s strength is ensuring that its members are protected from health and safety hazards and where there is negligence the company must adequately effect compensation.</p>
       <div class="hero__ctas">
-        <a class="btn btn--red btn--lg" href="#benefits">Join NUMSA Today <i class="fa-solid fa-arrow-right"></i></a>
-        <a class="btn btn--glass btn--lg" href="#documents" data-doc-category="">Latest statements</a>
+        <a class="btn btn--red btn--lg" href="#about">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+        <a class="btn btn--glass btn--lg" href="#join">Join the NUM</a>
       </div>
     </div>
-    <div class="container hero__bottom">
-      <dl class="hero__stats">
-        <div><dt>Years of worker power</dt><dd><span data-count="39">0</span></dd></div>
-        <div><dt>Active members</dt><dd><span data-count="300000">0</span>+</dd></div>
-        <div><dt>Single trade union in Africa</dt><dd>Largest</dd></div>
-      </dl>
-      <div class="hero__dots" role="tablist" aria-label="Hero images"></div>
-    </div>
-  </section>
-
-  <!-- ============ SAFE AND SECURE ============ -->
-  <section class="secure section" id="about">
-    <div class="container secure__grid">
-      <div class="secure__text reveal">
-        <p class="eyebrow">Our mission</p>
-        <h2>A safe and secure job for <span class="hl">every worker</span></h2>
-        <p class="lead"><strong>We stand with workers</strong> facing rising unemployment and unfair labour practices. <strong>Together, we fight</strong> for job security, equality, fairness, and protection.</p>
-        <ul class="ticks">
-          <li><i class="fa-solid fa-check"></i> Representation at the bargaining table</li>
-          <li><i class="fa-solid fa-check"></i> Protection against unfair dismissal</li>
-          <li><i class="fa-solid fa-check"></i> Solidarity across sectors and borders</li>
-        </ul>
-        <a class="btn btn--dark" href="#join">Join NUMSA Today <i class="fa-solid fa-arrow-right"></i></a>
-      </div>
-      <div class="secure__media reveal">
-        <img src="/assets/0000791781_resized_numsastrikes201311261022reuters-1.webp" alt="NUMSA member raising a fist at a rally" loading="lazy">
-        <div class="float-card">
-          <span class="float-card__icon"><i class="fa-solid fa-people-group"></i></span>
-          <div><strong>300 000+</strong><span>members standing together</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ WHY JOIN ============ -->
-  <section class="why section" id="benefits">
     <div class="container">
-      <header class="section-head section-head--split reveal">
+      <ul class="pillars" id="about">
+        <li><i class="fa-solid fa-helmet-safety"></i><div><strong>Health &amp; safety</strong><span>Protecting members from hazards underground and on surface</span></div></li>
+        <li><i class="fa-solid fa-scale-balanced"></i><div><strong>Fair compensation</strong><span>Holding companies to account where there is negligence</span></div></li>
+        <li><i class="fa-solid fa-people-group"></i><div><strong>Workers’ rights</strong><span>Organising mining, construction and energy workers</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ LATEST NEWS ============ -->
+  <section class="news section" id="news">
+    <div class="container">
+      <header class="section-head section-head--row reveal">
         <div>
-          <p class="eyebrow">Member benefits</p>
-          <h2>Why Join NUMSA?</h2>
+          <p class="eyebrow">News, reports &amp; speeches</p>
+          <h2>Latest News</h2>
         </div>
-        <p>Be part of a union that truly supports its members. Access exclusive resources, stay informed on important issues, and get involved in shaping the future of workers’ rights. <strong>Together, We’re Stronger.</strong></p>
+        <a class="text-link" href="https://num.org.za/news-reports-speeches/" target="_blank" rel="noopener">All news <i class="fa-solid fa-arrow-right"></i></a>
       </header>
-      <div class="bento">
-        <a class="tile tile--feature reveal" href="#benefits">
-          <span class="tile__icon"><i class="fa-solid fa-gavel"></i></span>
-          <div><h3>Free Legal Advice</h3><p>Expert help when your rights at work are under threat, from disciplinary hearings to the CCMA.</p></div>
-          <span class="tile__more">Read more <i class="fa-solid fa-arrow-right"></i></span>
+
+      <div class="news__top">
+        <a class="story story--feature reveal" href="https://num.org.za/news-reports-speeches/posts/num-nec-reaffirms-unity-defends-the-integrity-of-the-organization-and-intensifies-the-struggle-for-workers-rights/" target="_blank" rel="noopener">
+          <img src="/assets/num/news-6.jpg" alt="" loading="lazy">
+          <div class="story__body">
+            <time datetime="2026-11-09">09 Nov 2026</time>
+            <h3>NUM NEC reaffirms unity, defends the integrity of the organization and intensifies the struggle for workers’ rights</h3>
+            <p>The National Union of Mineworkers (NUM), following its National Executive Committee (NEC) deliberations on the 5th November 2026…</p>
+            <span class="story__more">Read article <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
         </a>
-        <a class="tile reveal" href="#benefits"><span class="tile__icon"><i class="fa-solid fa-umbrella"></i></span><h3>Free Funeral Cover</h3><span class="tile__more">Read more <i class="fa-solid fa-arrow-right"></i></span></a>
-        <a class="tile reveal" href="#benefits"><span class="tile__icon"><i class="fa-solid fa-graduation-cap"></i></span><h3>Basic Bursary Schemes</h3><span class="tile__more">Read more <i class="fa-solid fa-arrow-right"></i></span></a>
-        <a class="tile reveal" href="#benefits"><span class="tile__icon"><i class="fa-solid fa-hand"></i></span><h3>Protect Your Job</h3><span class="tile__more">Read more <i class="fa-solid fa-arrow-right"></i></span></a>
-        <a class="tile reveal" href="#benefits"><span class="tile__icon"><i class="fa-solid fa-chalkboard-user"></i></span><h3>Offers Training &amp; Support</h3><span class="tile__more">Read more <i class="fa-solid fa-arrow-right"></i></span></a>
-        <a class="tile tile--dark reveal" href="#benefits"><span class="tile__icon"><i class="fa-solid fa-people-group"></i></span><h3>Part of SAFTU</h3><span class="tile__more">Read more <i class="fa-solid fa-arrow-right"></i></span></a>
-        <a class="tile reveal" href="#benefits"><span class="tile__icon"><i class="fa-solid fa-earth-africa"></i></span><h3>International Worker Solidarity</h3><span class="tile__more">Read more <i class="fa-solid fa-arrow-right"></i></span></a>
-        <a class="tile tile--yellow reveal" href="#benefits"><span class="tile__icon"><i class="fa-solid fa-shield-halved"></i></span><h3>Protection For Your Pension</h3><span class="tile__more">Read more <i class="fa-solid fa-arrow-right"></i></span></a>
+        <div class="news__list">
+          <a class="story story--row reveal" href="https://num.org.za/news-reports-speeches/posts/num-condemns-continued-fatalities-at-sibanye-stillwater-calls-for-urgent-accountability-and-decisive-enforcement-following-fatal-fall-of-ground-incident-at-hlanganani-shaft/" target="_blank" rel="noopener">
+            <img src="/assets/num/news-5.jpg" alt="" loading="lazy">
+            <div><time datetime="2026-10-12">12 Oct 2026</time><h3>NUM condemns continued fatalities at Sibanye-Stillwater: calls for urgent accountability following fatal fall-of-ground incident at Hlanganani shaft</h3></div>
+          </a>
+          <a class="story story--row reveal" href="https://num.org.za/news-reports-speeches/posts/num-mobilizes-for-world-day-for-decent-work-sounds-alarm-over-the-systematic-destruction-of-permanent-jobs/" target="_blank" rel="noopener">
+            <img src="/assets/num/news-4.jpg" alt="" loading="lazy">
+            <div><time datetime="2026-10-05">05 Oct 2026</time><h3>NUM Mobilizes for World Day for Decent Work: Sounds Alarm Over the Systematic Destruction of Permanent Jobs</h3></div>
+          </a>
+          <a class="story story--row reveal" href="https://num.org.za/news-reports-speeches/posts/num-salutes-the-world-federation-of-trade-unions-wftu-on-its-81st-anniversary-an-indefatigable-shield-against-capitalist-exploitation/" target="_blank" rel="noopener">
+            <img src="/assets/num/news-3.jpg" alt="" loading="lazy">
+            <div><time datetime="2026-10-03">03 Oct 2026</time><h3>NUM salutes the World Federation of Trade Unions (WFTU) on its 81st anniversary</h3></div>
+          </a>
+          <a class="story story--row reveal" href="https://num.org.za/news-reports-speeches/posts/num-carletonville-region-condemns-horrific-wedela-tavern-mass-shooting-and-demands-swift-justice-for-18-victims/" target="_blank" rel="noopener">
+            <img src="/assets/num/news-2.jpg" alt="" loading="lazy">
+            <div><time datetime="2026-09-29">29 Sep 2026</time><h3>NUM Carletonville region condemns horrific Wedela tavern mass shooting and demands swift justice for 18 victims</h3></div>
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ============ SECTORS ============ -->
-  <section class="sectors section" id="sectors">
-    <div class="container">
-      <header class="section-head section-head--split reveal">
-        <div>
-          <p class="eyebrow eyebrow--light">We Can Represent You!</p>
-          <h2>Some industries <span class="hl hl--light">we represent</span></h2>
+      <div class="carousel" aria-roledescription="carousel" aria-label="More news">
+        <div class="carousel__head">
+          <h3>More stories</h3>
+          <div class="carousel__nav">
+            <button class="icon-btn icon-btn--line" data-dir="-1" aria-label="Previous stories"><i class="fa-solid fa-arrow-left"></i></button>
+            <button class="icon-btn icon-btn--line" data-dir="1" aria-label="Next stories"><i class="fa-solid fa-arrow-right"></i></button>
+          </div>
         </div>
-        <div>
-          <p>NUMSA is the largest metalworkers’ union in South Africa, <strong>but our representation goes far beyond metal.</strong> We unite workers across diverse industries to ensure their <strong>voices are heard, their rights protected, and their working conditions improved.</strong></p>
-          <a class="text-link" href="#sectors">View all our industries <i class="fa-solid fa-arrow-right"></i></a>
+        <div class="carousel__track" tabindex="0">
+          <a class="story story--card" href="https://num.org.za/news-reports-speeches/posts/num-national-women-structure-calls-on-president-ramaphosa-to-implement-the-presidential-gbvf-declaration/" target="_blank" rel="noopener">
+            <img src="/assets/num/news-1.jpg" alt="" loading="lazy"><time datetime="2026-09-22">22 Sep 2026</time>
+            <h3>NUM National Women Structure Calls on President Ramaphosa to Implement the Presidential GBVF Declaration</h3>
+            <p>The National Union of Mineworkers (NUM) National Women Structure…</p>
+          </a>
+          <a class="story story--card" href="https://num.org.za/news-reports-speeches/posts/num-pledges-unwavering-solidarity-with-usw-strike-at-sibanye-stillwater-operations-across-the-united-states-and-canada/" target="_blank" rel="noopener">
+            <img src="/assets/num/news-9.jpg" alt="" loading="lazy"><time datetime="2026-09-08">08 Sep 2026</time>
+            <h3>NUM Pledges Unwavering Solidarity with USW Strike at Sibanye-Stillwater Operations Across the United States and Canada</h3>
+            <p>The strike officially commenced on Thursday, 03 September 2026, following months of protracted negotiations that began in mid-April…</p>
+          </a>
+          <a class="story story--card" href="https://num.org.za/news-reports-speeches/posts/num-wishes-cosatu-a-resounding-and-decisive-15th-national-congress-amid-escalating-working-class-crises/" target="_blank" rel="noopener">
+            <img src="/assets/num/news-1.jpg" alt="" loading="lazy"><time datetime="2026-09-08">08 Sep 2026</time>
+            <h3>NUM wishes COSATU a resounding and decisive 15th national congress amid escalating working-class crises</h3>
+            <p>The National Union of Mineworkers (NUM) conveys its revolutionary best wishes to the Congress of South African Trade Unions…</p>
+          </a>
+          <a class="story story--card" href="https://num.org.za/news-reports-speeches/posts/num-conveys-its-message-of-solidarity-with-the-people-of-nepal-following-the-devastating-flash-floods/" target="_blank" rel="noopener">
+            <img src="/assets/num/news-8.jpg" alt="" loading="lazy"><time datetime="2026-09-05">05 Sep 2026</time>
+            <h3>NUM conveys its message of solidarity with the people of Nepal following the devastating flash floods</h3>
+            <p>The NUM conveys its message of support to the people of Nepal following the devastating flash floods which swept across the Nepal-China border.</p>
+          </a>
+          <a class="story story--card" href="https://num.org.za/news-reports-speeches/posts/num-youth-structure-adopts-resolute-programme-of-action-to-defend-jobs-reject-energy-privatization-and-end-worker-exploitation/" target="_blank" rel="noopener">
+            <img src="/assets/num/news-7.jpg" alt="" loading="lazy"><time datetime="2026-08-25">25 Aug 2026</time>
+            <h3>NUM youth structure adopts resolute programme of action to defend jobs, reject energy privatization, and end worker exploitation</h3>
+            <p>The National Union of Mineworkers (NUM)…</p>
+          </a>
         </div>
-      </header>
-      <div class="industries">
-        <article class="industry reveal"><span class="industry__num">01</span><span class="industry__icon"><i class="fa-solid fa-car"></i></span><h3>Motor Industry</h3><p>NUMSA represents workers in dealerships, workshops, panel beating and tyre fitment. We make sure your skills are respected, your wages are fair and your rights are not ignored.</p></article>
-        <article class="industry reveal"><span class="industry__num">02</span><span class="industry__icon"><i class="fa-solid fa-wrench"></i></span><h3>Metal and Engineering</h3><p>This is where NUMSA’s roots are. We organise workers in steel, foundries, fabrication and engineering shops. We fight for better wages, safer conditions and strong agreements that protect jobs.</p></article>
-        <article class="industry reveal"><span class="industry__num">03</span><span class="industry__icon"><i class="fa-solid fa-industry"></i></span><h3>Automotive Manufacturing</h3><p>We protect workers in the car factories and component plants. We fight for decent pay, safe conditions and secure jobs. When bosses push outsourcing or retrenchments, NUMSA stands firm to defend the workers who keep this industry alive.</p></article>
-        <article class="industry reveal"><span class="industry__num">04</span><span class="industry__icon"><i class="fa-solid fa-bolt"></i></span><h3>Electrical Engineering</h3><p>NUMSA organises workers in electrical manufacturing and engineering. We use our collective power to win decent wages and defend rights in this critical industry.</p></article>
-        <article class="industry reveal"><span class="industry__num">05</span><span class="industry__icon"><i class="fa-solid fa-life-ring"></i></span><h3>Tyre and Rubber</h3><p>NUMSA represents workers in dealerships, workshops, panel beating and tyre fitment. We make sure your skills are respected, your wages are fair and your rights are not ignored.</p></article>
-        <article class="industry reveal"><span class="industry__num">06</span><span class="industry__icon"><i class="fa-solid fa-plane"></i></span><h3>Aerospace</h3><p>NUMSA represents highly skilled aerospace workers. We fight retrenchments and demand respect for the skills that are vital for South Africa’s development.</p></article>
-        <article class="industry reveal"><span class="industry__num">07</span><span class="industry__icon"><i class="fa-solid fa-tower-cell"></i></span><h3>Telecoms and Electronics</h3><p>We unite workers in electronics and telecoms manufacturing. NUMSA resists casual contracts and agency exploitation so that workers have secure jobs and fair treatment.</p></article>
-        <article class="industry reveal"><span class="industry__num">08</span><span class="industry__icon"><i class="fa-solid fa-solar-panel"></i></span><h3>Renewable Energy</h3><p>As South Africa moves to renewable energy, NUMSA ensures the transition creates decent, secure jobs. We organise solar and wind workers so that green energy is also workers’ energy.</p></article>
       </div>
     </div>
   </section>
@@ -177,10 +165,10 @@
     <div class="container">
       <header class="section-head section-head--split reveal">
         <div>
-          <p class="eyebrow">Press room</p>
-          <h2>Documents &amp; Publications</h2>
+          <p class="eyebrow">Documents &amp; media statements</p>
+          <h2>Publications</h2>
         </div>
-        <p>Statements, policies, agreements and reports from NUMSA. <strong>Every document here has been reviewed and approved</strong> before publication.</p>
+        <p>Media statements, policies, agreements and reports from the NUM. <strong>Every document here has been reviewed and approved</strong> before publication.</p>
       </header>
       <div class="docs__tools">
         <div class="chips" role="tablist" aria-label="Filter by category" id="doc-chips">
@@ -198,86 +186,120 @@
     </div>
   </section>
 
-  <!-- ============ PARTNERS ============ -->
-  <section class="partners section">
+  <!-- ============ VIDEOS ============ -->
+  <section class="videos section" id="videos">
     <div class="container">
-      <header class="section-head reveal">
-        <p class="eyebrow">In solidarity</p>
-        <h2>Partners &amp; Stakeholders</h2>
+      <header class="section-head section-head--row reveal">
+        <div>
+          <p class="eyebrow eyebrow--light">Watch</p>
+          <h2>Latest NUM Videos</h2>
+        </div>
+        <a class="text-link" href="https://www.youtube.com/channel/UC6u5G-7qSkslOveZrBSmFIA" target="_blank" rel="noopener">View More <i class="fa-solid fa-arrow-right"></i></a>
       </header>
-      <div class="partner-groups">
-        <div class="partner-group reveal">
-          <h3>Fraternal Organisations</h3>
-          <div class="logos">
-            <a href="http://saftu.org.za/" target="_blank" rel="noopener" title="SAFTU"><img src="/assets/partners/SAFTU1.png" alt="SAFTU" loading="lazy"></a>
-            <span title="International Transport Federation"><img src="/assets/partners/International-Transport-Federation1.png" alt="International Transport Federation" loading="lazy"></span>
-            <span title="Pan-Africanism Today"><img src="/assets/partners/Pan-Africanism-Today1.png" alt="Pan-Africanism Today" loading="lazy"></span>
-            <span title="Socialist Revolutionary Workers Party"><img src="/assets/partners/Socialist-Revolutionary-Workers-Party1.png" alt="Socialist Revolutionary Workers Party" loading="lazy"></span>
-            <span title="Friedrich-Ebert-Stiftung"><img src="/assets/partners/FES.png" alt="Friedrich-Ebert-Stiftung" loading="lazy"></span>
-            <span title="International Peoples’ Assembly"><img src="/assets/partners/International-Peoples-Assembly1.png" alt="International Peoples’ Assembly" loading="lazy"></span>
-            <span title="3F"><img src="/assets/partners/3F1.png" alt="3F" loading="lazy"></span>
-          </div>
-        </div>
-        <div class="partner-group reveal">
-          <h3>Bargaining Councils</h3>
-          <div class="logos">
-            <a href="https://www.meibc.co.za/" target="_blank" rel="noopener" title="MEIBC"><img src="/assets/partners/MEIBC1.png" alt="MEIBC" loading="lazy"></a>
-            <a href="https://www.mibco.org.za/" target="_blank" rel="noopener" title="MIBCO"><img src="/assets/partners/MIBCO1.png" alt="MIBCO" loading="lazy"></a>
-            <span title="NBCRFLI"><img src="/assets/partners/NBCRFLI1.png" alt="NBCRFLI" loading="lazy"></span>
-            <span title="SARPBAC"><img src="/assets/partners/SARPBAC1.png" alt="SARPBAC" loading="lazy"></span>
-            <span title="NBCPSS"><img src="/assets/partners/NBCPSS1.png" alt="NBCPSS" loading="lazy"></span>
-          </div>
-        </div>
-        <div class="partner-group reveal">
-          <h3>Stakeholders</h3>
-          <div class="logos">
-            <a href="https://www.numsainvestment.co.za/" target="_blank" rel="noopener" title="NUMSA Financial Services"><img src="/assets/partners/NUMSA-Financial-Services1.png" alt="NUMSA Financial Services" loading="lazy"></a>
-            <span title="NUMSA Investment Company"><img src="/assets/partners/NUMSA-Investment-Company1.png" alt="NUMSA Investment Company" loading="lazy"></span>
-          </div>
-        </div>
+      <div class="video-grid">
+        <figure class="video reveal">
+          <button class="video__play" data-yt="ehBzbk9o2vs" aria-label="Play: NUM General Secretary David Sipunzi calls for the total ban of the labour brokers">
+            <img src="https://i.ytimg.com/vi/ehBzbk9o2vs/hqdefault.jpg" alt="" loading="lazy"><span><i class="fa-solid fa-play"></i></span>
+          </button>
+          <figcaption>NUM General Secretary David Sipunzi calls for the total ban of the labour brokers</figcaption>
+        </figure>
+        <figure class="video reveal">
+          <button class="video__play" data-yt="DllUQAdJFCc" aria-label="Play: NUM marches to the Chamber of Mines in South Africa">
+            <img src="https://i.ytimg.com/vi/DllUQAdJFCc/hqdefault.jpg" alt="" loading="lazy"><span><i class="fa-solid fa-play"></i></span>
+          </button>
+          <figcaption>NUM marches to the Chamber of Mines in South Africa</figcaption>
+        </figure>
+        <figure class="video reveal">
+          <button class="video__play" data-yt="oOqkz1ApUmc" aria-label="Play: NUM General Secretary Kholekile David Sipunzi">
+            <img src="https://i.ytimg.com/vi/oOqkz1ApUmc/hqdefault.jpg" alt="" loading="lazy"><span><i class="fa-solid fa-play"></i></span>
+          </button>
+          <figcaption>NUM General Secretary Kholekile David Sipunzi</figcaption>
+        </figure>
       </div>
     </div>
   </section>
 
-  <!-- ============ CTA ============ -->
-  <section class="cta-wrap">
-    <div class="container">
-      <div class="cta reveal" style="--img:url('/assets/NUMSA-1.jpg')">
-        <div>
-          <p class="eyebrow eyebrow--light">Become a member</p>
-          <h2>Together, we’re stronger.</h2>
-          <p>Join over 300 000 workers who refuse to be silenced.</p>
+  <!-- ============ GET IN TOUCH ============ -->
+  <section class="contact section" id="contact">
+    <div class="container contact__grid">
+      <div class="contact__intro reveal">
+        <p class="eyebrow">Contact NUM</p>
+        <h2>Get In Touch</h2>
+        <p class="lead">Questions about membership, a workplace issue or a media enquiry? Send us a message and the NUM will get back to you.</p>
+        <ul class="contact__details">
+          <li><i class="fa-solid fa-location-dot"></i><span>7 Rissik Street, Corner Frederick Street, Johannesburg</span></li>
+          <li><i class="fa-solid fa-phone"></i><a href="tel:+27113772000">011 377 2000</a></li>
+          <li><i class="fa-regular fa-envelope"></i><a href="mailto:info@num.org.za">info@num.org.za</a></li>
+        </ul>
+        <div class="follow">
+          <span>Follow the NUM</span>
+          <a href="https://twitter.com/NUM_Media" target="_blank" rel="noopener" aria-label="X (Twitter) @NUM_Media"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://www.youtube.com/channel/UC6u5G-7qSkslOveZrBSmFIA" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.facebook.com/NationalUnionOfMineworkers" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
         </div>
-        <a class="btn btn--light btn--lg" href="#join">Join NUMSA Today <i class="fa-solid fa-arrow-right"></i></a>
       </div>
+      <form class="contact-form reveal" id="contact-form" novalidate>
+        <div class="field-row">
+          <label>Name*<input name="name" required maxlength="100" autocomplete="given-name"></label>
+          <label>Surname*<input name="surname" required maxlength="100" autocomplete="family-name"></label>
+        </div>
+        <label>Email Address*<input type="email" name="email" required maxlength="200" autocomplete="email"></label>
+        <label>Message<textarea name="message" rows="5" maxlength="5000"></textarea></label>
+        <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+        <p class="form-status" id="contact-status" role="status" hidden></p>
+        <button class="btn btn--dark btn--lg" type="submit">Submit <i class="fa-solid fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ JOIN ============ -->
+  <section class="cta-wrap" id="join">
+    <div class="container">
+      <div class="cta reveal">
+        <div class="cta__text">
+          <p class="eyebrow eyebrow--light">Become a member</p>
+          <h2>Join the NUM</h2>
+          <p>NUM’s strength is ensuring that its members are protected from health and safety hazards and where there is negligence the company must adequately effect compensation. Join the NUM today.</p>
+        </div>
+        <a class="btn btn--light btn--lg" href="https://num.org.za/join-the-num/" target="_blank" rel="noopener">Join NUM <i class="fa-solid fa-arrow-right"></i></a>      </div>
     </div>
   </section>
 </main>
 
 <!-- ============ FOOTER ============ -->
-<footer class="footer" id="contact">
+<footer class="footer">
   <div class="container">
     <div class="footer__grid">
       <div class="footer__brand">
-        <a class="brand" href="/"><img src="/assets/numsa-logo-white.svg" alt="NUMSA" width="240" height="76"></a>
-        <p>As the largest trade union in the metal, engineering, and related sectors, we stand at the forefront of the fight for fair wages, better working conditions, and social justice.</p>
+        <a class="brand brand--light" href="/"><img src="/assets/num/num-logo-256.png" alt="" width="64" height="64"><span class="brand__text"><strong>NUM</strong><small>National Union of Mineworkers</small></span></a>
+        <p>Protecting members from health and safety hazards, and making sure that where there is negligence the company adequately effects compensation.</p>
+      </div>
+      <div class="footer__col"><h4>Navigation</h4>
+        <a href="#news">News</a>
+        <a href="#documents" data-doc-category="Careers">Careers</a>
+        <a href="#about">About us</a>
+        <a href="#contact">Contact</a>
+        <a href="https://sacoronavirus.co.za/" target="_blank" rel="noopener">Covid-19 Resource Portal</a>
+      </div>
+      <div class="footer__col"><h4>Contact NUM</h4>
+        <address>7 Rissik Street,<br>Corner Frederick Street,<br>Johannesburg</address>
+        <a href="tel:+27113772000">Phone: 011 377 2000</a>
+        <a href="mailto:info@num.org.za">Email: info@num.org.za</a>
+      </div>
+      <div class="footer__col"><h4>Social</h4>
         <div class="socials">
-          <a href="https://twitter.com/Numsa_Media" target="_blank" rel="noopener" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="https://www.facebook.com/www.numsa.org.za/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="https://whatsapp.com/channel/0029VbCEcVk4CrfbmxK0hw3r" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://twitter.com/NUM_Media" target="_blank" rel="noopener" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://www.youtube.com/channel/UC6u5G-7qSkslOveZrBSmFIA" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.facebook.com/NationalUnionOfMineworkers" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
         </div>
       </div>
-      <div class="footer__col"><h4>Press Room</h4><a href="#documents" data-doc-category="Press Statements">News</a><a href="#documents" data-doc-category="">Media</a><a href="#documents" data-doc-category="Vacancies">Vacancies</a></div>
-      <div class="footer__col"><h4>Navigate</h4><a href="#documents" data-doc-category="Vacancies">Vacancies</a><a href="mailto:info@numsa.org.za">Contact Us</a><a href="#join">Become a member</a></div>
-      <div class="footer__col"><h4>Legal</h4><a href="#documents" data-doc-category="Policies">Policies</a></div>
-      <div class="footer__col footer__contact"><h4>Get in touch</h4><a href="tel:+27116891700">+27 11 689 1700</a><a href="mailto:info@numsa.org.za">info@numsa.org.za</a></div>
     </div>
     <div class="footer__bottom">
-      <span>© <span id="year">2026</span> National Union of Metalworkers of South Africa</span>
-      <a href="#content">Back to top <i class="fa-solid fa-arrow-up"></i></a>
+      <span>© <span id="year">2026</span> National Union of Mineworkers</span>
+      <nav aria-label="Legal"><a href="#">Terms &amp; Conditions</a><a href="#">Privacy Policy</a><a href="#">Sitemap</a></nav>
     </div>
   </div>
-  <div class="footer__wordmark" aria-hidden="true">NUMSA</div>
+  <div class="footer__wordmark" aria-hidden="true">NUM</div>
 </footer>
 
 <script src="/js/site.js"></script>
