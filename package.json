@@ -1,0 +1,19 @@
+{
+  "name": "numsa-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NUMSA home page replica with a document upload and approval backend",
+  "main": "server.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server.js",
+    "dev": "node --env-file-if-exists=.env --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.22.3",
+    "multer": "^2.5.0"
+  }
+}

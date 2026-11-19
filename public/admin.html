@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Document Portal - NUMSA</title>
+  <link rel="icon" href="/assets/numsa-favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+
+<!-- ===== Login ===== -->
+<section id="login-view" class="login" hidden>
+  <form id="login-form" class="login__card">
+    <img src="/assets/numsa-logo.svg" alt="NUMSA" height="64">
+    <h1>Document Portal</h1>
+    <p class="muted">Sign in to upload and review documents for the NUMSA website.</p>
+    <label>Email<input type="email" name="email" autocomplete="username" required></label>
+    <label>Password<input type="password" name="password" autocomplete="current-password" required></label>
+    <p class="form-error" id="login-error" hidden></p>
+    <button class="btn btn--red" type="submit">Sign in</button>
+    <a class="back" href="/">← Back to website</a>
+  </form>
+</section>
+
+<!-- ===== App ===== -->
+<div id="app-view" hidden>
+  <header class="topnav">
+    <a class="brand" href="/" target="_blank" rel="noopener"><img src="/assets/numsa-logo-white.svg" alt="NUMSA" height="40"><span><small>Document Portal</small></span></a>
+    <div class="me"><span id="me-name"></span><span class="role" id="me-role"></span><button class="btn btn--ghost btn--xs" id="logout">Sign out</button></div>
+  </header>
+
+  <div class="layout">
+    <nav class="tabs" id="tabs" aria-label="Sections">
+      <button data-tab="pending" class="is-active"><i class="fa-regular fa-clock"></i> Review queue <span class="badge" data-count="pending">0</span></button>
+      <button data-tab="approved"><i class="fa-solid fa-globe"></i> Published <span class="badge badge--muted" data-count="approved">0</span></button>
+      <button data-tab="rejected"><i class="fa-solid fa-ban"></i> Rejected <span class="badge badge--muted" data-count="rejected">0</span></button>
+      <button data-tab="archived"><i class="fa-solid fa-box-archive"></i> Unpublished <span class="badge badge--muted" data-count="archived">0</span></button>
+      <button data-tab="upload" class="tab--cta"><i class="fa-solid fa-cloud-arrow-up"></i> Upload document</button>
+      <button data-tab="users" data-approver-only hidden><i class="fa-solid fa-users"></i> Users</button>
+    </nav>
+
+    <main class="panel">
+      <!-- document lists -->
+      <section id="list-view">
+        <div class="panel__head">
+          <div><h2 id="list-title">Review queue</h2><p class="muted" id="list-sub"></p></div>
+        </div>
+        <div id="doc-list" class="doc-list"></div>
+      </section>
+
+      <!-- upload -->
+      <section id="upload-view" hidden>
+        <div class="panel__head"><div><h2>Upload a document</h2><p class="muted">New uploads go to the review queue. They appear on the website as soon as an approver approves them.</p></div></div>
+        <form id="upload-form" class="form">
+          <label class="drop" id="drop">
+            <input type="file" name="file" id="file-input" required
+              accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.odt,.txt,.csv,.jpg,.jpeg,.png">
+            <i class="fa-solid fa-file-arrow-up"></i>
+            <strong id="drop-label">Drop a file here or click to choose</strong>
+            <span class="muted">PDF, Word, Excel, PowerPoint, text or images · max 25 MB</span>
+          </label>
+          <label>Title<input name="title" maxlength="200" required></label>
+          <label>Category<select name="category" required data-categories></select></label>
+          <label>Short description<textarea name="description" maxlength="1000" rows="3" placeholder="Shown under the title on the website"></textarea></label>
+          <div class="progress" id="upload-progress" hidden><span></span></div>
+          <p class="form-error" id="upload-error" hidden></p>
+          <div><button class="btn btn--red" type="submit"><i class="fa-solid fa-paper-plane"></i> Submit for approval</button></div>
+        </form>
+      </section>
+
+      <!-- users -->
+      <section id="users-view" hidden>
+        <div class="panel__head"><div><h2>Users</h2><p class="muted"><b>Editors</b> upload documents. <b>Approvers</b> review, publish and unpublish them, and manage users.</p></div></div>
+        <div class="users">
+          <table class="table" id="users-table"><thead><tr><th>Name</th><th>Email</th><th>Role</th><th></th></tr></thead><tbody></tbody></table>
+          <form id="user-form" class="form card">
+            <h3>Add a user</h3>
+            <label>Name<input name="name" required maxlength="100"></label>
+            <label>Email<input type="email" name="email" required></label>
+            <label>Role<select name="role"><option value="editor">Editor (upload only)</option><option value="approver">Approver</option></select></label>
+            <label>Temporary password<input type="text" name="password" minlength="10" required autocomplete="new-password"></label>
+            <p class="form-error" id="user-error" hidden></p>
+            <button class="btn btn--dark" type="submit">Add user</button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<!-- ===== Dialogs ===== -->
+<dialog id="note-dialog">
+  <form method="dialog" class="form">
+    <h3 id="note-title">Reject document</h3>
+    <p class="muted" id="note-help"></p>
+    <label><span id="note-label">Reason</span><textarea name="note" rows="3" maxlength="500"></textarea></label>
+    <div class="dialog__actions"><button class="btn btn--ghost" value="cancel" formnovalidate>Cancel</button><button class="btn btn--red" value="ok" id="note-ok">Reject</button></div>
+  </form>
+</dialog>
+
+<dialog id="edit-dialog">
+  <form method="dialog" class="form">
+    <h3>Edit details</h3>
+    <label>Title<input name="title" maxlength="200" required></label>
+    <label>Category<select name="category" data-categories></select></label>
+    <label>Description<textarea name="description" rows="3" maxlength="1000"></textarea></label>
+    <div class="dialog__actions"><button class="btn btn--ghost" value="cancel" formnovalidate>Cancel</button><button class="btn btn--dark" value="ok">Save</button></div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="/js/admin.js"></script>
+</body>
+</html>
