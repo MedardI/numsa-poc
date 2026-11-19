@@ -82,12 +82,14 @@
     $('#list-view').hidden = !TITLES[name];
     $('#upload-view').hidden = name !== 'upload';
     $('#users-view').hidden = name !== 'users';
+    $('#messages-view').hidden = name !== 'messages';
     if (TITLES[name]) {
       $('#list-title').textContent = TITLES[name][0];
       $('#list-sub').textContent = TITLES[name][1];
       loadDocs();
     }
     if (name === 'users') loadUsers();
+    if (name === 'messages') loadMessages();
     refreshStats();
   }
   $('#tabs').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) switchTab(b.dataset.tab); });
@@ -257,6 +259,40 @@
     bar.hidden = false;
     bar.firstElementChild.style.width = '0';
     xhr.send(new FormData(uploadForm));
+  });
+
+  // ---------------- contact messages ----------------
+  async function loadMessages() {
+    const list = $('#msg-list');
+    list.innerHTML = '<p class="muted">Loading…</p>';
+    const msgs = await api('/api/admin/messages');
+    if (!msgs.length) { list.innerHTML = '<div class="empty"><i class="fa-regular fa-envelope-open"></i>No messages yet.</div>'; return; }
+    list.innerHTML = msgs.map((m) => `<article class="row msg ${m.is_read ? '' : 'is-unread'}">
+      <div>
+        <h3>${esc(m.name)} ${esc(m.surname)} ${m.is_read ? '' : '<span class="status status--pending">new</span>'}</h3>
+        <div class="meta"><a href="mailto:${esc(m.email)}">${esc(m.email)}</a><span>${fmtDate(m.created_at)}</span></div>
+        <p class="body">${esc(m.message) || '<span class="muted">(no message)</span>'}</p>
+      </div>
+      <div class="actions">
+        <a class="btn btn--xs btn--dark" href="mailto:${esc(m.email)}?subject=${encodeURIComponent('Re: your message to the NUM')}"><i class="fa-solid fa-reply"></i> Reply</a>
+        <button class="btn btn--xs btn--ghost" data-msg-read="${m.id}" data-read="${m.is_read ? 'false' : 'true'}">${m.is_read ? 'Mark unread' : 'Mark read'}</button>
+        <button class="btn btn--xs btn--ghost" data-msg-del="${m.id}" aria-label="Delete" title="Delete"><i class="fa-regular fa-trash-can"></i></button>
+      </div>
+    </article>`).join('');
+  }
+  $('#msg-list').addEventListener('click', async (e) => {
+    const read = e.target.closest('[data-msg-read]');
+    const del = e.target.closest('[data-msg-del]');
+    try {
+      if (read) await api(`/api/admin/messages/${read.dataset.msgRead}/read`, { method: 'POST', body: { read: read.dataset.read === 'true' } });
+      else if (del) {
+        if (!confirm('Permanently delete this message? This cannot be undone.')) return;
+        await api(`/api/admin/messages/${del.dataset.msgDel}`, { method: 'DELETE' });
+        toast('Message deleted.');
+      } else return;
+      loadMessages();
+      refreshStats();
+    } catch (ex) { toast(ex.message, true); }
   });
 
   // ---------------- users ----------------

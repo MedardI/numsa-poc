@@ -14,15 +14,20 @@ const SESSION_DAYS = 7;
 const COOKIE = 'numsa_session';
 
 const CATEGORIES = [
-  'Press Statements',
+  'Media Statements',
+  'Reports & Speeches',
   'Policies',
-  'Reports',
   'Agreements & Wage Settlements',
   'Constitution & Governance',
   'Newsletters',
-  'Vacancies',
-  'Procurement & Tenders',
+  'Careers',
+  'Tenders',
 ];
+// Categories from the earlier NUMSA build, mapped onto the NUM ones.
+const RENAMED_CATEGORIES = { 'Press Statements': 'Media Statements', Reports: 'Reports & Speeches', Vacancies: 'Careers', 'Procurement & Tenders': 'Tenders' };
+for (const [from, to] of Object.entries(RENAMED_CATEGORIES)) {
+  db.prepare('UPDATE documents SET category = ? WHERE category = ?').run(to, from);
+}
 
 // Allowed file types. The Content-Type we serve comes from this table, never from the upload.
 const FILE_TYPES = {
@@ -153,6 +158,25 @@ app.get('/documents/:id/download', (req, res) => {
   sendFile(res, doc, req.query.inline === '1');
 });
 
+// "Get In Touch" form. Rate-limited per IP; a hidden "website" field catches simple bots.
+const contactHits = new Map(); // ip -> [timestamps]
+app.post('/api/contact', (req, res) => {
+  const b = req.body || {};
+  if (b.website) return res.status(201).json({ ok: true }); // honeypot: pretend success
+  const now = Date.now();
+  const recent = (contactHits.get(req.ip) || []).filter((t) => now - t < 60 * 60 * 1000);
+  if (recent.length >= 5) return res.status(429).json({ error: 'Too many messages. Please try again later.' });
+  const name = clean(b.name, 100);
+  const surname = clean(b.surname, 100);
+  const email = clean(b.email, 200);
+  const message = clean(b.message, 5000);
+  if (!name || !surname) return res.status(400).json({ error: 'Please enter your name and surname.' });
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return res.status(400).json({ error: 'Please enter a valid email address.' });
+  db.prepare('INSERT INTO messages (name, surname, email, message) VALUES (?, ?, ?, ?)').run(name, surname, email, message);
+  contactHits.set(req.ip, [...recent, now]);
+  res.status(201).json({ ok: true });
+});
+
 // ---------------------------------------------------------------- auth
 const loginAttempts = new Map(); // ip -> { count, until }
 app.post('/api/auth/login', (req, res) => {
@@ -220,6 +244,7 @@ app.get('/api/admin/stats', requireAuth, (req, res) => {
   const rows = db.prepare('SELECT status, COUNT(*) AS n FROM documents GROUP BY status').all();
   const stats = { pending: 0, approved: 0, rejected: 0, archived: 0 };
   for (const r of rows) stats[r.status] = r.n;
+  stats.unread = db.prepare('SELECT COUNT(*) AS n FROM messages WHERE is_read = 0').get().n;
   res.json(stats);
 });
 
@@ -340,6 +365,21 @@ app.delete('/api/admin/documents/:id', requireAuth, (req, res) => {
   res.json({ ok: true });
 });
 
+// ---------------------------------------------------------------- admin: contact messages (approvers only)
+app.get('/api/admin/messages', requireAuth, requireApprover, (req, res) => {
+  res.json(db.prepare('SELECT * FROM messages ORDER BY created_at DESC, id DESC LIMIT 500').all());
+});
+app.post('/api/admin/messages/:id/read', requireAuth, requireApprover, (req, res) => {
+  const r = db.prepare('UPDATE messages SET is_read = ? WHERE id = ?').run(req.body?.read === false ? 0 : 1, Number(req.params.id));
+  if (!r.changes) return res.status(404).json({ error: 'Not found.' });
+  res.json({ ok: true });
+});
+app.delete('/api/admin/messages/:id', requireAuth, requireApprover, (req, res) => {
+  const r = db.prepare('DELETE FROM messages WHERE id = ?').run(Number(req.params.id));
+  if (!r.changes) return res.status(404).json({ error: 'Not found.' });
+  res.json({ ok: true });
+});
+
 // ---------------------------------------------------------------- admin: users (approvers only)
 app.get('/api/admin/users', requireAuth, requireApprover, (req, res) => {
   res.json(db.prepare('SELECT id, name, email, role, created_at FROM users ORDER BY name').all());
@@ -391,6 +431,6 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`NUMSA site running at http://localhost:${PORT}`);
+  console.log(`NUM site running at http://localhost:${PORT}`);
   console.log(`Admin portal:          http://localhost:${PORT}/admin`);
 });

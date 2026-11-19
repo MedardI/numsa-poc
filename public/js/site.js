@@ -4,31 +4,6 @@
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ---------- hero slideshow with progress dots ----------
-  const slides = $$('.hero__slide');
-  const dotsWrap = $('.hero__dots');
-  let slide = 0;
-  let timer;
-  const dots = slides.map((_, i) => {
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.setAttribute('aria-label', `Show image ${i + 1}`);
-    b.addEventListener('click', () => go(i));
-    dotsWrap.append(b);
-    return b;
-  });
-  function go(i) {
-    slides[slide].classList.remove('is-active');
-    dots[slide].classList.remove('is-active');
-    slide = i;
-    slides[slide].classList.add('is-active');
-    void dots[slide].offsetWidth; // restart the progress animation
-    dots[slide].classList.add('is-active');
-    clearTimeout(timer);
-    if (!reduceMotion) timer = setTimeout(() => go((slide + 1) % slides.length), 6000);
-  }
-  if (slides.length) go(0);
-
   // ---------- header ----------
   const header = $('#header');
   const onScroll = () => header.classList.toggle('is-scrolled', scrollY > 40);
@@ -42,8 +17,8 @@
   nav.addEventListener('click', (e) => { if (e.target.closest('a')) setNav(false); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setNav(false); });
 
-  // ---------- reveal (staggered within each group) + counters ----------
-  for (const group of $$('.bento, .industries, .partner-groups')) {
+  // ---------- reveal on scroll (staggered within each group) ----------
+  for (const group of $$('.news__list, .video-grid')) {
     $$('.reveal', group).forEach((el, i) => el.style.setProperty('--d', `${(i % 4) * 0.08}s`));
   }
   const io = new IntersectionObserver((entries) => {
@@ -55,25 +30,69 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   $$('.reveal').forEach((el) => io.observe(el));
 
-  const fmt = (n) => n.toLocaleString('en-ZA');
-  const countIO = new IntersectionObserver((entries) => {
-    for (const e of entries) {
-      if (!e.isIntersecting) continue;
-      countIO.unobserve(e.target);
-      const el = e.target;
-      const to = Number(el.dataset.count);
-      if (reduceMotion) { el.textContent = fmt(to); continue; }
-      const start = performance.now();
-      const dur = 2200;
-      const tick = (t) => {
-        const p = Math.min((t - start) / dur, 1);
-        el.textContent = fmt(Math.round(to * (1 - Math.pow(1 - p, 4))));
-        if (p < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
+  // ---------- news carousel ----------
+  const track = $('.carousel__track');
+  const navBtns = $$('.carousel__nav button');
+  if (track) {
+    const step = () => (track.firstElementChild?.getBoundingClientRect().width || 300) + 24;
+    navBtns.forEach((b) => b.addEventListener('click', () => track.scrollBy({ left: Number(b.dataset.dir) * step(), behavior: reduceMotion ? 'auto' : 'smooth' })));
+    const update = () => {
+      navBtns[0].disabled = track.scrollLeft <= 2;
+      navBtns[1].disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+    };
+    track.addEventListener('scroll', update, { passive: true });
+    addEventListener('resize', update);
+    update();
+  }
+
+  // ---------- videos: load the YouTube player only when asked ----------
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.video__play');
+    if (!btn) return;
+    const id = btn.dataset.yt;
+    if (!/^[\w-]{6,20}$/.test(id)) return;
+    const frame = document.createElement('iframe');
+    frame.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+    frame.title = btn.getAttribute('aria-label').replace(/^Play: /, '');
+    frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    frame.allowFullscreen = true;
+    btn.replaceWith(frame);
+  });
+
+  // ---------- header search jumps to the document search ----------
+  $('#search-btn')?.addEventListener('click', () => {
+    $('#documents').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+    setTimeout(() => $('#doc-search').focus({ preventScroll: true }), reduceMotion ? 0 : 600);
+  });
+
+  // ---------- "Get In Touch" form ----------
+  const form = $('#contact-form');
+  const status = $('#contact-status');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const showStatus = (msg, error) => { status.textContent = msg; status.classList.toggle('is-error', !!error); status.hidden = false; };
+    let firstBad = null;
+    for (const el of $$('input[required]', form)) {
+      const bad = !el.value.trim() || (el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim()));
+      el.setAttribute('aria-invalid', bad);
+      if (bad && !firstBad) firstBad = el;
     }
-  }, { threshold: 0.5 });
-  $$('[data-count]').forEach((el) => countIO.observe(el));
+    if (firstBad) { showStatus('Please fill in your name, surname and a valid email address.', true); firstBad.focus(); return; }
+    const btn = $('button[type=submit]', form);
+    btn.disabled = true;
+    try {
+      const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form))) });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || 'Your message could not be sent. Please try again.');
+      form.reset();
+      showStatus('Thank you. Your message has been sent to the NUM.');
+    } catch (ex) {
+      showStatus(ex.message, true);
+    } finally {
+      btn.disabled = false;
+    }
+  });
+  form?.addEventListener('input', (e) => { if (e.target.getAttribute('aria-invalid') === 'true') e.target.setAttribute('aria-invalid', 'false'); });
 
   const year = $('#year');
   if (year) year.textContent = new Date().getFullYear();

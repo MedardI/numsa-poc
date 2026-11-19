@@ -48,6 +48,17 @@ db.exec(`
     published_at  TEXT
   );
   CREATE INDEX IF NOT EXISTS idx_documents_status ON documents(status, published_at DESC);
+
+  -- "Get In Touch" form on the home page.
+  CREATE TABLE IF NOT EXISTS messages (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    name       TEXT NOT NULL,
+    surname    TEXT NOT NULL,
+    email      TEXT NOT NULL,
+    message    TEXT NOT NULL DEFAULT '',
+    is_read    INTEGER NOT NULL DEFAULT 0,
+    created_at TEXT NOT NULL DEFAULT (datetime('now'))
+  );
 `);
 
 // ---- passwords (scrypt) ----
@@ -68,7 +79,7 @@ function verifyPassword(password, stored) {
 function bootstrapAdmin() {
   const { n } = db.prepare('SELECT COUNT(*) AS n FROM users').get();
   if (n > 0) return;
-  const email = process.env.ADMIN_EMAIL || 'admin@numsa.local';
+  const email = process.env.ADMIN_EMAIL || 'admin@num.local';
   let password = process.env.ADMIN_PASSWORD;
   const generated = !password;
   if (generated) password = crypto.randomBytes(9).toString('base64url');
